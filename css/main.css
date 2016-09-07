@@ -10,25 +10,32 @@ header{
 	height: 100px;
 }
 header img{
-	float: left;	
+	/*float: left;*/	
 }
 header .img1{
 	margin-top: -20px;
 	margin-left: 10px;
+	float: left;
+}
+.titulo{
+	margin-left: 40px;
 }
 .top-menu{
-	float: right;
-	width: 60%;
+	float: left;
+	width: 100%;
 	list-style: none;
+	display: inline;
 
 }
 .top-menu li {
-	float: right;
-	width: 20%;
+	float: left;
+	display: inline;
+	width: 30%;
 }
 .top-menu li a {
 	color: #5882FA;
 	text-decoration: none;
+	display: inline;
 }
 
 .line-clear{

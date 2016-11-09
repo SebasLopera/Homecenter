@@ -1,0 +1,5 @@
+projectKey=hcresponsable
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/hcresponsable
+ceTaskId=AVg7t1L9IFP_miOHV5nk
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVg7t1L9IFP_miOHV5nk

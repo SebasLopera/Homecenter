@@ -1,0 +1,5 @@
+projectKey=homecenter
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/homecenter
+ceTaskId=AVhLmy6y8InoiGgH8aF0
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVhLmy6y8InoiGgH8aF0

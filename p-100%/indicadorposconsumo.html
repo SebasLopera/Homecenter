@@ -178,7 +178,250 @@ function indicadores1()
 		document.all.item("report1").style.visibility='visible';
 			
 	}
+	function dibujarEjes()
+          {
+		   		   var graficaSFJ   = document.getElementById ( "graficaSJF" );
+				   var contexto     = graficaSFJ.getContext   ( "2d" );
+				   var drawing      = new Image(); 
+				   drawing.src      = "images/PilasLuminarias.png"; 
+				   contexto.drawImage(drawing, 0, 0, 492, 299);
+				   
+				   var graficaSFJ1   = document.getElementById ( "graficaSJF1" );
+				   var contexto1     = graficaSFJ1.getContext   ( "2d" );
+				   var drawing1      = new Image(); 
+				   drawing1.src      = "images/BateriaLlantas.png"; 
+				   contexto1.drawImage(drawing1, 0, 0, 506, 301);
+		  }
+	function graficar2()
+	{
+	    var contador=0;
+		var valor1=0;
+		var valor2=0;
+		var posx=1;
 		
+		for(var i=2; i<document.getElementById('TablaIndicador').rows.length-1;i++)
+		{
+			valor2=parseInt(document.getElementById('TablaIndicador').rows[i].cells[2].innerHTML);
+			
+			contador=contador+1;
+			
+		    if(contador>5)
+			{
+			  i=i+1;
+			  contador=0;
+			}
+			
+			dibujarPuntoRojo(valor2/100,posx);
+			posx=posx+1;
+		}
+	}
+	function graficar1()
+	{
+	    var contador=0;
+		var valor1=0;
+		var valor2=0;
+		var posx=1;
+		
+		for(var i=2; i<document.getElementById('TablaIndicador').rows.length-1;i++)
+		{
+		    valor1=parseInt(document.getElementById('TablaIndicador').rows[i].cells[1].innerHTML);
+			contador=contador+1;
+			
+		    if(contador>5)
+			{
+			  i=i+1;
+			  contador=0;
+			}
+			dibujarPuntoAzul(valor1/100,posx);
+			posx=posx+1;
+		}
+	}
+	function graficar4()
+	{
+	    var contador=0;
+		var valor1=0;
+		var valor2=0;
+		var posx=1;
+		
+		for(var i=2; i<document.getElementById('TablaIndicador1').rows.length-1;i++)
+		{
+			valor2=parseInt(document.getElementById('TablaIndicador1').rows[i].cells[2].innerHTML);
+			
+			contador=contador+1;
+			
+		    if(contador>5)
+			{
+			  i=i+1;
+			  contador=0;
+			}
+			
+			dibujarPuntoRojo1(valor2/10000,posx);
+			posx=posx+1;
+		}
+	}
+	function graficar3()
+	{
+	    var contador=0;
+		var valor1=0;
+		var valor2=0;
+		var posx=1;
+		
+		for(var i=2; i<document.getElementById('TablaIndicador1').rows.length-1;i++)
+		{
+		    valor1=parseInt(document.getElementById('TablaIndicador1').rows[i].cells[1].innerHTML);
+			contador=contador+1;
+			
+		    if(contador>5)
+			{
+			  i=i+1;
+			  contador=0;
+			}
+			dibujarPuntoAzul1(valor1/10000,posx);
+			posx=posx+1;
+		}
+	}
+	
+	
+	function dibujarPuntoRojo(y, x)
+		  {		   
+		  		  var graficaSJF   = document.getElementById ( "graficaSJF" );
+				  var contexto  = graficaSJF.getContext   ( "2d" );
+				  
+				  var posX1 = getPosX ( x );
+				  var posY  = getPosY ( y );
+				  
+				  contexto.beginPath();
+		  		  contexto.arc(posX1,posY,3,0,2*Math.PI);
+				  contexto.fillStyle="red";
+				  contexto.fill();
+				  contexto.stroke();
+		  }
+	function dibujarPuntoAzul(y, x)
+		  {		   
+		  		  var graficaSJF   = document.getElementById ( "graficaSJF" );
+				  var contexto  = graficaSJF.getContext   ( "2d" );
+				  
+				  var posX1 = getPosX ( x );
+				  var posY  = getPosY ( y );
+				  
+				  contexto.beginPath();
+		  		  contexto.arc(posX1,posY,3,0,2*Math.PI);
+				  contexto.fillStyle="blue";
+				  contexto.fill();
+				  contexto.stroke();
+		  }
+	function dibujarPuntoRojo1(y, x)
+		  {		   
+		  		  var graficaSJF   = document.getElementById ( "graficaSJF1" );
+				  var contexto  = graficaSJF.getContext   ( "2d" );
+				  
+				  var posX1 = getPosX1 ( x );
+				  var posY  = getPosY1 ( y );
+				  
+				  contexto.beginPath();
+		  		  contexto.arc(posX1,posY,3,0,2*Math.PI);
+				  contexto.fillStyle="red";
+				  contexto.fill();
+				  contexto.stroke();
+		  }
+	function dibujarPuntoAzul1(y, x)
+		  {		   
+		  		  var graficaSJF   = document.getElementById ( "graficaSJF1" );
+				  var contexto  = graficaSJF.getContext   ( "2d" );
+				  
+				  var posX1 = getPosX1 ( x );
+				  var posY  = getPosY1 ( y );
+				  
+				  contexto.beginPath();
+		  		  contexto.arc(posX1,posY,3,0,2*Math.PI);
+				  contexto.fillStyle="blue";
+				  contexto.fill();
+				  contexto.stroke();
+		  }
+	function getPosX( inicio )
+		  {   
+		      var resultado=38 +  ( inicio * 30 );
+		      return resultado;
+			  
+		  }
+    
+	module( "Test getPosX" ); 
+	test("Test1",function () {
+    ok(!checkNumber(getPosX(5)),"Satisfactorio");
+    });  
+		
+	function getPosY( idProceso )
+		  {
+		      var resultado= 30-( (idProceso-3.1) * 55 );
+		      return resultado;
+	      }
+	module( "Test getPosY" ); 
+	test("Test2",function () {
+    ok(!checkNumber(getPosY(20)),"Satisfactorio");
+    });  
+	function getPosX1( inicio )
+		  {   
+		      var resultado=46 +  ( inicio * 29 );
+		      return resultado;
+			  
+		  }
+    
+	module( "Test getPosX1" ); 
+	test("Test3",function () {
+    ok(!checkNumber(getPosX(5)),"Satisfactorio");
+    });  
+		
+	function getPosY1( idProceso )
+		  {
+		      var resultado=  - ( (idProceso-1.4) * 150 );
+		      return resultado;
+	      }
+	module( "Test getPosY1" ); 
+	test("Test4",function () {
+    ok(!checkNumber(getPosY(20)),"Satisfactorio");
+    });  
+		  
+	function checkNumber(numero){
+       		 return isNaN(numero);
+         }
+	 function imprimirGrafica() {
+	      document.all.item("art-main").style.visibility='hidden';
+		  document.all.item("qunit").style.visibility='hidden';
+		  document.all.item("qunit-fixture").style.visibility='hidden';
+		  document.all.item("g1").style.visibility='hidden';
+		  document.all.item("g2").style.visibility='hidden';
+		  document.all.item("imp").style.visibility='hidden';
+		  
+		  document.all.item("grafica").style.visibility='visible';
+		  
+          window.print();
+		  
+		  document.all.item("g1").style.visibility='visible';
+		  document.all.item("g2").style.visibility='visible';
+		  document.all.item("imp").style.visibility='visible';
+		  document.all.item("art-main").style.visibility='visible';
+		  document.all.item("qunit").style.visibility='visible';
+		  document.all.item("qunit-fixture").style.visibility='visible';
+            }
+	 function imprimirGrafica1() {
+	      document.all.item("art-main").style.visibility='hidden';
+		  document.all.item("qunit").style.visibility='hidden';
+		  document.all.item("qunit-fixture").style.visibility='hidden';
+		  document.all.item("g3").style.visibility='hidden';
+		  document.all.item("g4").style.visibility='hidden';
+		  document.all.item("imp1").style.visibility='hidden';
+		  
+		  document.all.item("grafica1").style.visibility='visible';
+		  
+          window.print();
+		  
+		  document.all.item("g3").style.visibility='visible';
+		  document.all.item("g4").style.visibility='visible';
+		  document.all.item("imp1").style.visibility='visible';
+		  document.all.item("art-main").style.visibility='visible';
+		  document.all.item("qunit").style.visibility='visible';
+		  document.all.item("qunit-fixture").style.visibility='visible';
+            } 
 	function generarReporte(){
 		 
 		 document.all.item("cargando").style.visibility='visible';
@@ -232,7 +475,7 @@ function indicadores1()
 
 
 </head>
-<body>
+<body onload="dibujarEjes()">
 <div id="art-main">
 <div id="qunit"></div>
 <div id="qunit-fixture"></div> 
@@ -269,7 +512,7 @@ function indicadores1()
                                                 
                 <div class="art-postcontent art-postcontent-0 clearfix"><div class="art-content-layout">
     <div class="art-content-layout-row">
-    <div class="art-layout-cell" style="width: 55%" >
+    <div  id=grafica class="art-layout-cell" style="width: 55%" >
 	<p>&nbsp;</p>
 	<p style="text-align: center;">TABLA ANALISIS POSCONSUMO PILAS Y LUMINARIAS</p>
 	
@@ -394,7 +637,11 @@ function indicadores1()
 		</tr>
 	</tbody>
 </table>
-
+<p>&nbsp;</p>
+ 	   <p style="text-align: center;"><canvas id="graficaSJF" width="492" height="299"><IMG src="images/PilasLuminarias.png" width="800" height="320"></canvas></p>
+ 	   <p style="text-align: left;" id="imp"><img name="imagen1"src="images/postprinticon.png" onClick="imprimirGrafica()"></p>  
+       <p style="text-align: center;" id="g1"><a onclick="graficar1();" class="art-button">Grafica1</a></p> 
+	   <p style="text-align: center;" id="g2"><a onclick="graficar2();" class="art-button">Grafica2</a></p>
 <table border="1" cellpadding="1" cellspacing="1" id="Acciones" style="width:500px; visibility:hidden;">
 	<tbody>
 		<tr>
@@ -433,7 +680,7 @@ function indicadores1()
 
    		<p style="text-align: right;visibility:hidden;" id="cargando">Se descargo el reporte....</p>
 								  
-    </div><div class="art-layout-cell" style="width: 40%" >
+    </div><div id=grafica1 class="art-layout-cell" style="width: 40%" >
 	    <p>&nbsp;</p>
         <p style="text-align: right;">TABLA ANALISIS POSCONSUMO BATERIAS Y LLANTAS</p>
 		        <table align="center" border="1" cellpadding="1" cellspacing="1" id="TablaIndicador1" style="width:500px;">
@@ -557,7 +804,11 @@ function indicadores1()
 		</tr>
 	</tbody>
 </table>
-
+ <p>&nbsp;</p>
+ <p style="text-align: center;"><canvas id="graficaSJF1" width="506" height="301"><IMG src="images/BateriaLlantas.png" width="800" height="320"></canvas></p>
+ <p style="text-align: left;" id="imp1"><img name="imagen1"src="images/postprinticon.png" onClick="imprimirGrafica()"></p>  
+ <p style="text-align: center;" id="g3"><a onclick="graficar3();" class="art-button">Grafica1</a></p> 
+ <p style="text-align: center;" id="g4"><a onclick="graficar4();" class="art-button">Grafica2</a></p>
 <table border="1" cellpadding="1" cellspacing="1" id="Acciones1" style="width:500px; visibility:hidden;">
 	<tbody>
 		<tr>
